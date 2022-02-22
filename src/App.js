@@ -1,6 +1,13 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 
+const TEST_JOBS = [
+  "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=2903362227",
+  "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=2908048350",
+  "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=2874312221",
+  "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=2929958456",
+];
+
 const App = () => {
   // state
   const [walletAddress, setWalletAddress] = useState(null);
@@ -51,6 +58,18 @@ const App = () => {
     </button>
   );
 
+  const renderConnectedContainer = () => (
+    <div className="connected-container">
+      <div className="gif-grid">
+        {TEST_JOBS.map((job) => (
+          <div className="gif-item" key={job}>
+            <p>{job}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   // when component first mounts / loads -> check if user has Phantom wallet
   useEffect(() => {
     const onLoad = async () => {
@@ -69,6 +88,7 @@ const App = () => {
               A decentralized job board powered by Solana
             </p>
             {!walletAddress && renderNotConnectedContainer()}
+            {walletAddress && renderConnectedContainer()}
           </div>
         </div>
       </div>
