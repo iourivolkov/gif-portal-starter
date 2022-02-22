@@ -1,6 +1,6 @@
 .App {
   height: 100vh;
-  background-color: #1a202c;
+  background-color: #ffffff;
   overflow: scroll;
   text-align: center;
 }
@@ -22,14 +22,15 @@
 
 .header {
   margin: 0;
-  font-size: 50px;
+  font-size: 65px;
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 .sub-text {
-  font-size: 25px;
-  color: white;
+  font-size: 20px;
+  color: rgb(45, 45, 45);
+  font-weight: lighter;
 }
 
 .gradient-text {
@@ -111,7 +112,7 @@
   object-fit: cover;
 }
 
-.connected-container input[type='text'] {
+.connected-container input[type="text"] {
   display: inline-block;
   color: white;
   padding: 10px;
