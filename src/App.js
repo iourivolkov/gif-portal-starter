@@ -11,6 +11,7 @@ const TEST_JOBS = [
 const App = () => {
   // state
   const [walletAddress, setWalletAddress] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
   // function to decide if Phantom wallet is connected
   const checkIfWalletIsConnected = async () => {
@@ -60,6 +61,16 @@ const App = () => {
 
   const renderConnectedContainer = () => (
     <div className="connected-container">
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <input type="text" placeholder="Enter job posting link" />
+        <button type="submit" className="cta-button submit-gif-button">
+          Submit
+        </button>
+      </form>
       <div className="gif-grid">
         {TEST_JOBS.map((job) => (
           <div className="gif-item" key={job}>
