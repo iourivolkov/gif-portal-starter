@@ -61,7 +61,7 @@
 }
 
 .submit-gif-button {
-  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
+  background: -webkit-linear-gradient(left, #db2b28, #ffff2c);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
   margin-left: 10px;
@@ -118,11 +118,10 @@
   color: white;
   padding: 10px;
   width: 50%;
-  height: 60px;
+  height: 50px;
   font-size: 16px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.25);
-  border: none;
+  border: solid 2px rgb(157, 157, 157);
   border-radius: 10px;
   margin: 50px auto;
 }

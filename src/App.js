@@ -12,6 +12,7 @@ const App = () => {
   // state
   const [walletAddress, setWalletAddress] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const [jobList, setJobList] = useState([]);
 
   // function to decide if Phantom wallet is connected
   const checkIfWalletIsConnected = async () => {
@@ -48,6 +49,22 @@ const App = () => {
     }
   };
 
+  const sendJob = async () => {
+    if (inputValue.length > 0) {
+      console.log("Job Link:", inputValue);
+      setJobList([...jobList, inputValue]);
+      setInputValue("");
+    } else {
+      alert("The input is empty. Please enter a valid link and try again.");
+    }
+  };
+
+  // f(x) will fire when something is typed into input box
+  const onInputChange = (event) => {
+    const { value } = event.target;
+    setInputValue(value);
+  };
+
   // render this UI if the user hasn't connected
 
   const renderNotConnectedContainer = () => (
@@ -64,15 +81,21 @@ const App = () => {
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          sendJob();
         }}
       >
-        <input type="text" placeholder="Enter job posting link" />
+        <input
+          type="text"
+          placeholder="Enter job posting link"
+          value={inputValue}
+          onChange={onInputChange}
+        />
         <button type="submit" className="cta-button submit-gif-button">
           Submit
         </button>
       </form>
       <div className="gif-grid">
-        {TEST_JOBS.map((job) => (
+        {jobList.map((job) => (
           <div className="gif-item" key={job}>
             <p>{job}</p>
           </div>
@@ -89,6 +112,16 @@ const App = () => {
     window.addEventListener("load", onLoad);
     return () => window.removeEventListener("load", onLoad);
   }, []);
+
+  useEffect(() => {
+    if (walletAddress) {
+      console.log("Fetching job list...");
+
+      // set state
+      setJobList(TEST_JOBS);
+    }
+  }, [walletAddress]);
+
   return (
     <div className="App">
       <div className={walletAddress ? "authed-container" : "container"}>
